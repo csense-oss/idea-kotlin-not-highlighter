@@ -1,0 +1,31 @@
+<idea-plugin>
+    <id>csense.idea.kotlin-not-highlighter</id>
+    <name>Csense - Kotlin Not Highlighter</name>
+    <vendor email="csense@tvedesys.dk" url="https://github.com/csense-oss/idea-kotlin-not-highlighter">
+        Csense oss
+    </vendor>
+
+
+    <description>A plugin allowing you to customize highlighting of "not" and "!" alike in code</description>
+
+    <depends>com.intellij.modules.lang</depends>
+    <depends>org.jetbrains.kotlin</depends>
+    <depends>com.intellij.modules.java</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <annotator language="kotlin"
+                   implementationClass="csense.kotlin.not.highlighter.NotNameAnnotator"
+        />
+
+        <applicationService
+                serviceImplementation="csense.kotlin.not.highlighter.settings.NotHighlighterSettings"/>
+        <applicationConfigurable
+                instance="csense.kotlin.not.highlighter.settings.NotHighlighterSettingsConfigurable"/>
+
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+    <idea-version since-build="203"/>
+</idea-plugin>
