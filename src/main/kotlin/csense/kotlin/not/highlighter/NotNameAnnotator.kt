@@ -4,9 +4,8 @@ import com.intellij.lang.annotation.*
 import com.intellij.openapi.editor.markup.*
 import com.intellij.openapi.util.*
 import com.intellij.psi.*
-import csense.idea.base.bll.kotlin.*
 import csense.kotlin.extensions.*
-import csense.kotlin.extensions.primitives.*
+import csense.kotlin.not.highlighter.bll.*
 import csense.kotlin.not.highlighter.settings.*
 import org.jetbrains.kotlin.lexer.*
 import org.jetbrains.kotlin.psi.*
@@ -14,7 +13,9 @@ import org.jetbrains.kotlin.psi.psiUtil.*
 import java.awt.*
 
 class NotNameAnnotator : Annotator {
+
     private val settings = NotHighlighterSettings.instance
+
     override fun annotate(element: PsiElement, holder: AnnotationHolder) {
         if (settings.isNotEnabled) {
             return
@@ -47,13 +48,11 @@ class NotNameAnnotator : Annotator {
                     highlightRange(elementRange, holder)
                 }
             }
-
-
         }
     }
 
     private fun highlightNotIn(element: PsiElement, holder: AnnotationHolder) {
-        val notStart = element.notStartAtIndex() ?: return
+        val notStart = element.indexOfNotOrNull() ?: return
         val realNotStart = element.textRange.startOffset + notStart
         highlightRange(TextRange(realNotStart, realNotStart + 3), holder)
     }
@@ -82,7 +81,7 @@ class NotNameAnnotator : Annotator {
         ).create()
     }
 
-    private fun PsiElement.notStartAtIndex(): Int? {
-        return this.text.indexOfOrNull("not", ignoreCase = true)
+    private fun PsiElement.indexOfNotOrNull(): Int? {
+        return text.indexOfNotOrNull()
     }
 }

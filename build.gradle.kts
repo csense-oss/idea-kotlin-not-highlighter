@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "csense-idea"
-version = "1.0.1"
+version = "1.0.2"
 
 intellij {
     updateSinceUntilBuild.set(false)
@@ -41,8 +41,7 @@ tasks.getByName<org.jetbrains.intellij.tasks.PatchPluginXmlTask>("patchPluginXml
     changeNotes.set(
       """
         <ul>
-            <li>Fixed colors not being persisted</li>
-            <li>Fixed Font settings not respected</li>
+            <li>Fixed not highligting respecting cammelcase</li>
         </ul>
       """
     )
