@@ -5,6 +5,7 @@ import csense.kotlin.not.highlighter.*
 import org.junit.*
 
 class AnnotatorTest : KotlinLightCodeInsightFixtureTestCaseJunit4() {
+
     override fun getTestDataPath(): String {
         return "src/test/testData/"
     }

@@ -51,7 +51,6 @@ class NotHighlighterSettingsUI {
         foregroundColor.addActionListener {
             foregroundBox.isSelected = true
         }
-
     }
 
     fun component() = root
@@ -97,4 +96,6 @@ class NotHighlighterSettingsUI {
 
     fun italic(): Boolean = italicBox.isSelected
     fun bold(): Boolean = boldBox.isSelected
+
+
 }

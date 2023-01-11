@@ -1,19 +1,19 @@
 plugins {
     //https://github.com/JetBrains/gradle-intellij-plugin
-    id("org.jetbrains.intellij") version "1.3.1"
-    kotlin("jvm") version "1.6.10"
+    id("org.jetbrains.intellij") version "1.11.0"
+    kotlin("jvm") version "1.8.0"
     java
     //https://github.com/jeremylong/dependency-check-gradle/releases
-    id("org.owasp.dependencycheck") version "6.5.2.1"
+    id("org.owasp.dependencycheck") version "7.4.4"
 }
 
 group = "csense-idea"
-version = "1.0.2"
+version = "1.0.3"
 
 intellij {
     updateSinceUntilBuild.set(false)
     plugins.set(listOf("Kotlin", "java"))
-    version.set("2020.3")
+    version.set("2021.3.3")
 }
 
 
@@ -26,22 +26,25 @@ repositories {
 }
 
 dependencies {
-    implementation("csense.kotlin:csense-kotlin-jvm:0.0.54")
+    implementation("csense.kotlin:csense-kotlin-jvm:0.0.59")
     implementation("csense.kotlin:csense-kotlin-annotations-jvm:0.0.41")
     implementation("csense.kotlin:csense-kotlin-datastructures-algorithms:0.0.41")
     implementation("csense.idea.base:csense-idea-base:0.1.41")
+
     testImplementation("junit:junit:4.13.2")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0")
-    testImplementation("csense.kotlin:csense-kotlin-tests:0.0.53")
-    testImplementation("csense.idea.test:csense-idea-test:0.1.0")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
+    testImplementation("csense.kotlin:csense-kotlin-tests:0.0.59")
+    testImplementation("csense.idea.test:csense-idea-test:0.2.0")
 }
 
 
 tasks.getByName<org.jetbrains.intellij.tasks.PatchPluginXmlTask>("patchPluginXml") {
     changeNotes.set(
-      """
+        """
         <ul>
-            <li>Fixed not highligting respecting cammelcase</li>
+            <li>Fixed various bugs wrt settings</li>
+            <li>Built for newer IDEA version</li>
+            <li>Added more comprehensive tests</li>
         </ul>
       """
     )
@@ -49,16 +52,21 @@ tasks.getByName<org.jetbrains.intellij.tasks.PatchPluginXmlTask>("patchPluginXml
 
 tasks.getByName("check").dependsOn("dependencyCheckAnalyze")
 
-java {
-    this.sourceCompatibility = JavaVersion.VERSION_1_8
-    this.targetCompatibility = JavaVersion.VERSION_1_8
-}
 tasks {
+
+    withType<JavaCompile> {
+        sourceCompatibility = "11"
+        targetCompatibility = "11"
+        test {
+
+        }
+    }
+
     compileKotlin {
-        kotlinOptions.jvmTarget = "1.8"
+        kotlinOptions.jvmTarget = "11"
     }
     compileTestKotlin {
-        kotlinOptions.jvmTarget = "1.8"
+        kotlinOptions.jvmTarget = "11"
     }
     test {
         testLogging {
@@ -68,6 +76,7 @@ tasks {
         }
     }
 }
+
 sourceSets {
     test {
         resources {
