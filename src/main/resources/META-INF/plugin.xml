@@ -6,7 +6,7 @@
     </vendor>
 
 
-    <description>A plugin allowing you to customize highlighting of "not" and "!" alike in code</description>
+    <description>A plugin allowing to highlight "not" and "!" alike in code.</description>
 
     <depends>com.intellij.modules.lang</depends>
     <depends>org.jetbrains.kotlin</depends>
@@ -27,5 +27,5 @@
     <actions>
         <!-- Add your actions here -->
     </actions>
-    <idea-version since-build="203"/>
+    <idea-version since-build="213"/>
 </idea-plugin>
