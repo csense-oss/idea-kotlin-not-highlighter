@@ -31,7 +31,6 @@ dependencies {
     implementation("csense.kotlin:csense-kotlin-datastructures-algorithms:0.0.41")
     implementation("csense.idea.base:csense-idea-base:0.1.41")
 
-    testImplementation("junit:junit:4.13.2")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
     testImplementation("csense.kotlin:csense-kotlin-tests:0.0.59")
     testImplementation("csense.idea.test:csense-idea-test:0.2.0")
