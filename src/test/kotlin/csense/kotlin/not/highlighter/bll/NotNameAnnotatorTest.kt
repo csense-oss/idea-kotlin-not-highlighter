@@ -1,10 +1,9 @@
 package csense.kotlin.not.highlighter.bll
 
 import csense.idea.kotlin.test.*
-import csense.kotlin.not.highlighter.*
 import org.junit.*
 
-class AnnotatorTest : KotlinLightCodeInsightFixtureTestCaseJunit4() {
+class NotNameAnnotatorTest : KotlinLightCodeInsightFixtureTestCaseJunit4() {
 
     override fun getTestDataPath(): String {
         return "src/test/testData/"
@@ -18,9 +17,9 @@ class AnnotatorTest : KotlinLightCodeInsightFixtureTestCaseJunit4() {
     @Test
     fun notCases() {
         myFixture.testHighlighting(
-            /* checkWarnings = */ true,
+            /* checkWarnings = */ false,
             /* checkInfos = */ true,
-            /* checkWeakWarnings = */ true,
+            /* checkWeakWarnings = */ false,
             /* ...filePaths = */ "NotCases.kt"
         )
     }

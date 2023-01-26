@@ -2,6 +2,7 @@ package csense.kotlin.not.highlighter.bll
 
 import csense.kotlin.extensions.primitives.*
 
+//TODO move to base module,this is very common in IDE code.
 @JvmInline
 value class CharKebabCase(val char: Char) {
     companion object

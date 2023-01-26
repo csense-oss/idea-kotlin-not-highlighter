@@ -1,6 +1,9 @@
 package csense.kotlin.not.highlighter.settings.form
 
+import com.intellij.openapi.editor.markup.*
 import com.intellij.ui.*
+import com.jetbrains.rd.swing.*
+import csense.kotlin.extensions.*
 import csense.kotlin.not.highlighter.settings.*
 import java.awt.*
 import javax.swing.*
@@ -9,93 +12,128 @@ import javax.swing.*
 class NotHighlighterSettingsUI {
 
     private lateinit var root: JPanel
+
     private lateinit var isEnabledBox: JCheckBox
-
-    private lateinit var foregroundColor: ColorPanel
-    private lateinit var backgroundColor: ColorPanel
-
-    private lateinit var foregroundBox: JCheckBox
-    private lateinit var backgroundBox: JCheckBox
-
     private lateinit var highlightVariableNames: JCheckBox
     private lateinit var highlightFunctionNames: JCheckBox
 
     private lateinit var boldBox: JCheckBox
     private lateinit var italicBox: JCheckBox
 
-    private val settings: NotHighlighterSettings = NotHighlighterSettings.instance
+    private lateinit var foregroundBox: JCheckBox
+    private lateinit var foregroundColorBox: ColorPanel
+
+    private lateinit var backgroundBox: JCheckBox
+    private lateinit var backgroundColorBox: ColorPanel
+
+    private lateinit var errorStripeBox: JCheckBox
+    private lateinit var errorStripeColorBox: ColorPanel
+
+    private lateinit var effectsBox: JCheckBox
+    private lateinit var effectsColorBox: ColorPanel
+
+    private lateinit var effectType: JComboBox<EffectType>
+
+    private val highlighterSettings: NotHighlighterSettings = NotHighlighterSettings.instance
 
     init {
+        effectType.model = EnumComboBoxModel(type())
         loadSettings()
-        setupBindings()
     }
 
-    private fun setupBindings() {
-        foregroundBox.addActionListener {
-            if (foregroundColor.selectedColor == null) {
-                foregroundColor.selectedColor = Color.black
-            } else {
-                foregroundColor.selectedColor = null
-            }
-        }
-        backgroundBox.addActionListener {
-            if (backgroundColor.selectedColor == null) {
-                backgroundColor.selectedColor = Color.black
-            } else {
-                backgroundColor.selectedColor = null
-            }
-        }
-        backgroundColor.addActionListener {
-            backgroundBox.isSelected = true
-        }
-        foregroundColor.addActionListener {
-            foregroundBox.isSelected = true
-        }
-    }
-
-    fun component() = root
-
+    fun component(): JPanel = root
     fun loadSettings() {
-        isEnabledBox.isSelected = settings.isEnabled
+        isEnabledBox.isSelected = highlighterSettings.isEnabled
+        highlightVariableNames.isSelected = highlighterSettings.highlightVariableNames
+        highlightFunctionNames.isSelected = highlighterSettings.highlightFunctionNames
+        //TODO WRONG IMPL here for font type
+        boldBox.isSelected = highlighterSettings.fontType == Font.BOLD
+        italicBox.isSelected = highlighterSettings.fontType == Font.ITALIC
 
-        foregroundColor.selectedColor = settings.foregroundColor
-        backgroundColor.selectedColor = settings.backgroundColor
+        foregroundBox.isSelected = highlighterSettings.foregroundColor != null
+        foregroundColorBox.selectedColor = highlighterSettings.foregroundColor
 
-        foregroundBox.isSelected = settings.foregroundColor != null
-        backgroundBox.isSelected = settings.backgroundColor != null
+        backgroundBox.isSelected = highlighterSettings.backgroundColor != null
+        backgroundColorBox.selectedColor = highlighterSettings.backgroundColor
 
-        highlightVariableNames.isSelected = settings.highlightVariableNames
-        highlightFunctionNames.isSelected = settings.highlightFunctionNames
+        errorStripeBox.isSelected = highlighterSettings.errorStripeColor != null
+        errorStripeColorBox.selectedColor = highlighterSettings.errorStripeColor
 
-        boldBox.isSelected = settings.bold
-        italicBox.isSelected = settings.italic
+        effectsBox.isSelected = highlighterSettings.effectColor != null
+        effectsColorBox.selectedColor = highlighterSettings.effectColor
+
+        effectType.selectedItem = highlighterSettings.effectType ?: EffectType.LINE_UNDERSCORE
     }
 
     fun isModified(): Boolean {
-        val isEnabledChanged = isEnabledBox.isSelected != settings.isEnabled
 
-        val isForegroundChanged = foregroundColor.selectedColor != settings.foregroundColor
-        val isBackgroundChanged = backgroundColor.selectedColor != settings.backgroundColor
 
-        val isBoldChanged = boldBox.isSelected != settings.bold
-        val isItalicChanged = italicBox.isSelected != settings.italic
+        return highlighterSettings.isEnabled != isEnabledBox.isSelected ||
 
-        val isHighlightVariablesChanged = highlightVariableNames.isSelected != settings.highlightVariableNames
-        val isHighlightFunctionsChanged = highlightVariableNames.isSelected != settings.highlightFunctionNames
+                highlighterSettings.highlightVariableNames != highlightVariableNames.isSelected ||
+                highlighterSettings.highlightFunctionNames != highlightFunctionNames.isSelected ||
 
-        return isEnabledChanged || isForegroundChanged || isBackgroundChanged || isHighlightVariablesChanged || isHighlightFunctionsChanged || isItalicChanged || isBoldChanged
+                highlighterSettings.foregroundColor != selectedForegroundColor() ||
+                highlighterSettings.backgroundColor != selectedBackgroundColor() ||
+
+                highlighterSettings.errorStripeColor != selectedErrorStripeColor() ||
+
+                highlighterSettings.effectColor != selectedEffectsColor() ||
+                highlighterSettings.effectType != selectedEffectsType() ||
+
+                highlighterSettings.fontType != selectedFontTypes()
     }
 
-    fun isEnabled() = isEnabledBox.isSelected
+    fun update(settings: NotHighlighterSettings) {
+        settings.isEnabled = isEnabledBox.isSelected
 
-    fun foregroundColor(): Color? = foregroundColor.selectedColor
-    fun backgroundColor(): Color? = backgroundColor.selectedColor
+        settings.highlightVariableNames = highlightVariableNames.isSelected
+        settings.highlightFunctionNames = highlightFunctionNames.isSelected
 
-    fun highlightFunctionNames() = highlightFunctionNames.isSelected
-    fun highlightVariableNames() = highlightVariableNames.isSelected
+        settings.foregroundColor = selectedForegroundColor()
+        settings.backgroundColor = selectedBackgroundColor()
 
-    fun italic(): Boolean = italicBox.isSelected
-    fun bold(): Boolean = boldBox.isSelected
+        settings.errorStripeColor = selectedErrorStripeColor()
+
+        settings.effectColor = selectedEffectsColor()
+        settings.effectType = selectedEffectsType()
+
+        settings.fontType = selectedFontTypes()
+    }
+
+    private fun selectedForegroundColor(): Color? =
+        foregroundColorBox.colorOrNullBy(foregroundBox)
+
+    private fun selectedBackgroundColor(): Color? =
+        backgroundColorBox.colorOrNullBy(backgroundBox)
+
+    private fun selectedErrorStripeColor(): Color? =
+        errorStripeColorBox.colorOrNullBy(errorStripeBox)
 
 
+    private fun selectedEffectsColor(): Color? =
+        effectsColorBox.colorOrNullBy(effectsBox)
+
+
+    //TODO
+    private fun selectedEffectsType(): EffectType? =
+        effectType.model.selectedItem as? EffectType
+
+    @Suppress("KotlinConstantConditions")//otherwise idea wants to remove some of the code making it more difficult to understand.
+    private fun selectedFontTypes(): Int {
+        var result = Font.PLAIN
+        if (italicBox.isSelected) {
+            result = result.or(Font.ITALIC)
+        }
+        if (boldBox.isSelected) {
+            result = result.or(Font.BOLD)
+        }
+        return result
+    }
+
+}
+
+fun ColorPanel.colorOrNullBy(checkbox: JCheckBox): Color? = when {
+    checkbox.isSelected -> this.selectedColor
+    else -> null
 }

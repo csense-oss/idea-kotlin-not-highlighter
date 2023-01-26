@@ -1,10 +1,11 @@
 plugins {
     //https://github.com/JetBrains/gradle-intellij-plugin
-    id("org.jetbrains.intellij") version "1.11.0"
+    id("org.jetbrains.intellij") version "1.12.0"
+    //https://github.com/JetBrains/kotlin
     kotlin("jvm") version "1.8.0"
-    java
+    kotlin("plugin.serialization") version "1.8.0"
     //https://github.com/jeremylong/dependency-check-gradle/releases
-    id("org.owasp.dependencycheck") version "7.4.4"
+    id("org.owasp.dependencycheck") version "8.0.0"
 }
 
 group = "csense-idea"
@@ -19,6 +20,7 @@ intellij {
 
 repositories {
     mavenCentral()
+    mavenLocal()
     maven {
         setUrl("https://pkgs.dev.azure.com/csense-oss/csense-oss/_packaging/csense-oss/maven/v1")
         name = "Csense oss"
@@ -29,7 +31,9 @@ dependencies {
     implementation("csense.kotlin:csense-kotlin-jvm:0.0.59")
     implementation("csense.kotlin:csense-kotlin-annotations-jvm:0.0.41")
     implementation("csense.kotlin:csense-kotlin-datastructures-algorithms:0.0.41")
-    implementation("csense.idea.base:csense-idea-base:0.1.41")
+    implementation("csense.idea.base:csense-idea-base:0.1.60")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0-RC")
 
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
     testImplementation("csense.kotlin:csense-kotlin-tests:0.0.59")
@@ -56,9 +60,6 @@ tasks {
     withType<JavaCompile> {
         sourceCompatibility = "11"
         targetCompatibility = "11"
-        test {
-
-        }
     }
 
     compileKotlin {
@@ -67,6 +68,7 @@ tasks {
     compileTestKotlin {
         kotlinOptions.jvmTarget = "11"
     }
+
     test {
         testLogging {
             showExceptions = true
