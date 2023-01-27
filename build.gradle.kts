@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "csense-idea"
-version = "1.0.3"
+version = "1.0.4"
 
 intellij {
     updateSinceUntilBuild.set(false)
