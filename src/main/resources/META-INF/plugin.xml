@@ -14,8 +14,7 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <annotator language="kotlin"
-                   implementationClass="csense.kotlin.not.highlighter.NotNameAnnotator"
-        />
+                   implementationClass="csense.kotlin.not.highlighter.NotNameAnnotator"/>
 
         <applicationService
                 serviceImplementation="csense.kotlin.not.highlighter.settings.NotHighlighterSettings"/>
@@ -25,7 +24,6 @@
     </extensions>
 
     <actions>
-        <!-- Add your actions here -->
     </actions>
     <idea-version since-build="213"/>
 </idea-plugin>

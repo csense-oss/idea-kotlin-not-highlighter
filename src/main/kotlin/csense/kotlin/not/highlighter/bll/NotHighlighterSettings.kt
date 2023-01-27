@@ -5,6 +5,7 @@ import com.intellij.psi.*
 import com.intellij.ui.*
 import com.intellij.util.ui.*
 import csense.idea.base.bll.kotlin.*
+import csense.idea.base.uicomponents.colorFont.*
 import csense.kotlin.not.highlighter.settings.*
 import org.jetbrains.kotlin.lexer.*
 import org.jetbrains.kotlin.psi.*
@@ -46,10 +47,5 @@ fun NotHighlighterSettings.mayHighlight(element: KtNameReferenceExpression): Boo
     return isFunctionAndMayHighlight || mayHighlightVariableNames
 }
 
-fun NotHighlighterSettings.toTextAttributes(): TextAttributes = TextAttributes(
-    /* foregroundColor = */ foregroundColor,
-    /* backgroundColor = */ backgroundColor,
-    /* effectColor = */ effectColor,
-    /* effectType = */ effectType,
-    /* fontType = */  fontType
-)
+fun NotHighlighterSettings.toTextAttributes(): TextAttributes =
+    colorFontPanelData.toTextAttributes()
