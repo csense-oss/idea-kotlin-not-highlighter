@@ -18,7 +18,6 @@ intellij {
     version.set("2021.3.3")
 }
 
-
 repositories {
     mavenCentral()
     mavenLocal()
@@ -54,6 +53,7 @@ tasks.getByName<org.jetbrains.intellij.tasks.PatchPluginXmlTask>("patchPluginXml
         </ul>
       """
     )
+    sinceBuild.set("213")
 }
 
 tasks.getByName("check").dependsOn("dependencyCheckAnalyze")
