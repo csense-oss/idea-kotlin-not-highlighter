@@ -3,6 +3,8 @@ package csense.kotlin.not.highlighter
 import com.intellij.lang.annotation.*
 import com.intellij.openapi.util.*
 import com.intellij.psi.*
+import csense.idea.base.bll.kotlin.*
+import csense.idea.base.bll.string.*
 import csense.kotlin.not.highlighter.bll.*
 import csense.kotlin.not.highlighter.settings.*
 import org.jetbrains.kotlin.psi.*
@@ -26,7 +28,7 @@ class NotNameAnnotator : Annotator {
         }
     }
 
-    fun KtBinaryExpression.highlight(holder: AnnotationHolder) {
+    private fun KtBinaryExpression.highlight(holder: AnnotationHolder) {
         highlightRange(range = operationReference.textRange, holder = holder)
     }
 
@@ -51,13 +53,13 @@ class NotNameAnnotator : Annotator {
         element: PsiElement,
         holder: AnnotationHolder
     ) {
-        val text = element.text
         val startOffsetOfText = element.textRange.startOffset
-        text.kebabCase.forEachKebabCase { string, firstIndex ->
+
+        element.text.kebabCase.forEachKebabCase { string, stringStartIndex ->
             if (!string.isNotText()) {
                 return@forEachKebabCase
             }
-            val notTextRange = textRangeForNotText(startOffset = startOffsetOfText + firstIndex)
+            val notTextRange = textRangeForNotText(startOffset = startOffsetOfText + stringStartIndex)
             highlightRange(
                 range = notTextRange,
                 holder = holder
@@ -88,10 +90,3 @@ class NotNameAnnotator : Annotator {
         const val notText: String = "not"
     }
 }
-
-//TODO move
-fun KtIsExpression.textRangeOfOperator(): TextRange =
-    operationReference.textRange
-
-fun KtPrefixExpression.textRangeOfOperator(): TextRange =
-    operationReference.textRange

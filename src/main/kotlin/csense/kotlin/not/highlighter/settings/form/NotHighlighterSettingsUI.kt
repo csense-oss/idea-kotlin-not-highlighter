@@ -12,6 +12,7 @@ class NotHighlighterSettingsUI {
     private lateinit var isEnabledBox: JCheckBox
     private lateinit var highlightVariableNames: JCheckBox
     private lateinit var highlightFunctionNames: JCheckBox
+    private lateinit var highlightOperators: JCheckBox
 
     private lateinit var colorFontPanel: ColorFontPanel
 
@@ -26,6 +27,7 @@ class NotHighlighterSettingsUI {
         isEnabledBox.isSelected = highlighterSettings.isEnabled
         highlightVariableNames.isSelected = highlighterSettings.highlightVariableNames
         highlightFunctionNames.isSelected = highlighterSettings.highlightFunctionNames
+        highlightOperators.isSelected = highlighterSettings.highlightOperators
         colorFontPanel.updateWithData(highlighterSettings.colorFontPanelData)
     }
 
@@ -34,6 +36,8 @@ class NotHighlighterSettingsUI {
 
                 highlighterSettings.highlightVariableNames != highlightVariableNames.isSelected ||
                 highlighterSettings.highlightFunctionNames != highlightFunctionNames.isSelected ||
+                highlighterSettings.highlightOperators != highlightOperators.isSelected ||
+
 
                 colorFontPanel.getData() != highlighterSettings.colorFontPanelData
     }
@@ -43,6 +47,7 @@ class NotHighlighterSettingsUI {
 
         settings.highlightVariableNames = highlightVariableNames.isSelected
         settings.highlightFunctionNames = highlightFunctionNames.isSelected
+        settings.highlightOperators = highlightOperators.isSelected
 
         settings.colorFontPanelData = colorFontPanel.getData()
     }

@@ -22,24 +22,12 @@ fun NotHighlighterSettings.mayHighlight(element: PsiElement): Boolean = when {
     isNotEnabled -> false
     element is KtProperty -> highlightVariableNames
     element is KtNamedDeclaration -> highlightFunctionNames
-    element is KtPrefixExpression -> element.operationReference.containsNotToken()
+    element is KtPrefixExpression -> highlightOperators && element.operationReference.containsNotToken()
     element is KtNameReferenceExpression -> mayHighlight(element)
-    element is KtBinaryExpression -> element.operationReference.containsNotToken()
-    element is KtIsExpression -> element.isNegated
+    element is KtBinaryExpression -> highlightOperators && element.operationReference.containsNotToken()
+    element is KtIsExpression -> highlightOperators && element.isNegated
     else -> true
 }
-
-//TODO move
-fun KtSimpleNameExpression.containsNotToken(): Boolean {
-    return getReferencedNameElementType() in setOf(
-        KtTokens.NOT_IN,
-        KtTokens.NOT_IS,
-        KtTokens.EXCL,
-        KtTokens.EXCLEQ,
-        KtTokens.EXCLEQEQEQ
-    )
-}
-
 
 fun NotHighlighterSettings.mayHighlight(element: KtNameReferenceExpression): Boolean {
     val isFunctionAndMayHighlight = element.isFunction() && highlightFunctionNames

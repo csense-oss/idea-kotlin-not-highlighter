@@ -13,6 +13,7 @@ data class NotHighlighterSettings(
     var isEnabled: Boolean = true,
     var highlightVariableNames: Boolean = true,
     var highlightFunctionNames: Boolean = true,
+    var highlightOperators: Boolean = true,
 
     @OptionTag(converter = ColorFontPanelDataConverter::class)
     var colorFontPanelData: ColorFontPanelData = defaultColorFontPanelData
@@ -25,6 +26,7 @@ data class NotHighlighterSettings(
 
         this.highlightFunctionNames = state.highlightFunctionNames
         this.highlightVariableNames = state.highlightVariableNames
+        this.highlightOperators = state.highlightOperators
 
         this.colorFontPanelData = state.colorFontPanelData
     }

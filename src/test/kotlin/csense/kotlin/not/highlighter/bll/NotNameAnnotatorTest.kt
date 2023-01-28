@@ -24,4 +24,13 @@ class NotNameAnnotatorTest : KotlinLightCodeInsightFixtureTestCaseJunit4() {
         )
     }
 
+    @Test
+    fun example() {
+        myFixture.testHighlighting(
+            /* checkWarnings = */ false,
+            /* checkInfos = */ true,
+            /* checkWeakWarnings = */ false,
+            /* ...filePaths = */ "Example.kt"
+        )
+    }
 }
