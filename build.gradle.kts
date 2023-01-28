@@ -3,13 +3,14 @@ plugins {
     id("org.jetbrains.intellij") version "1.12.0"
     //https://github.com/JetBrains/kotlin
     kotlin("jvm") version "1.8.0"
+    //https://github.com/Kotlin/kotlinx.serialization
     kotlin("plugin.serialization") version "1.8.0"
-    //https://github.com/jeremylong/dependency-check-gradle/releases
-    id("org.owasp.dependencycheck") version "8.0.0"
+    //https://jeremylong.github.io/DependencyCheck/
+    id("org.owasp.dependencycheck") version "8.0.2"
 }
 
 group = "csense-idea"
-version = "1.0.4"
+version = "1.1.0"
 
 intellij {
     updateSinceUntilBuild.set(false)
@@ -37,7 +38,7 @@ dependencies {
 
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
     testImplementation("csense.kotlin:csense-kotlin-tests:0.0.59")
-    testImplementation("csense.idea.test:csense-idea-test:0.2.0")
+    testImplementation("csense.idea.test:csense-idea-test:0.3.0")
 }
 
 
@@ -45,7 +46,9 @@ tasks.getByName<org.jetbrains.intellij.tasks.PatchPluginXmlTask>("patchPluginXml
     changeNotes.set(
         """
         <ul>
-            <li>Fixed various bugs wrt settings</li>
+            <li>Can now highlight !is, != and such</li>
+            <li>Fixed various bugs w.r.t settings</li>
+            <li>Updated settings to match IDEA's color settings</li>
             <li>Built for newer IDEA version</li>
             <li>Added more comprehensive tests</li>
         </ul>

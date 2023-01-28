@@ -1,7 +1,11 @@
-# 1.0.4
-- highlight !is as well
-- and highlights multiple not's
-- fixed missing highlights of "!=" expressions (in if's)
+# 1.1.0
+- Improved settings page
+- added more settings
+- new highlighting of 
+    - !is
+    - !=
+    - multiple not's in the same function name etc
+- improved testing 
 
 # 1.0.3
 
