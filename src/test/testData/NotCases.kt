@@ -1,7 +1,7 @@
 <info descr="null">@<info descr="null">file</info>:Suppress</info>("unused", "ControlFlowWithEmptyBody", "KotlinConstantConditions")
 package csense.kotlin.<info descr="null">not</info>.test
 
-class <info descr="null"><info descr="null">Not</info>Cases</info>(
+class <info descr="null">NotCases</info>(
     <info descr="null">private</info> val <info descr="null">thisValShouldBehighlighted<info descr="null">Not</info></info>: <info descr="null">Boolean</info>
 ) {
 

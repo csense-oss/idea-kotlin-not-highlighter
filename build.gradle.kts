@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "csense-idea"
-version = "1.1.0"
+version = "1.1.1"
 
 intellij {
     updateSinceUntilBuild.set(false)
@@ -45,11 +45,7 @@ tasks.getByName<org.jetbrains.intellij.tasks.PatchPluginXmlTask>("patchPluginXml
     changeNotes.set(
         """
         <ul>
-            <li>Can now highlight !is, != and such</li>
-            <li>Fixed various bugs w.r.t settings</li>
-            <li>Updated settings to match IDEA's color settings</li>
-            <li>Built for newer IDEA version</li>
-            <li>Added more comprehensive tests</li>
+            <li>Should now respect camelCasing fully</li>
         </ul>
       """
     )

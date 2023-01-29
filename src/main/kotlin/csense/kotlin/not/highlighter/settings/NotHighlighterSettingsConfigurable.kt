@@ -13,7 +13,7 @@ import javax.swing.*
 
 class NotHighlighterSettingsConfigurable : SearchableConfigurable {
 
-    var ui: NotHighlighterSettingsUI? = null
+    private var ui: NotHighlighterSettingsUI? = null
 
     override fun createComponent(): JComponent? {
         ui = ui ?: NotHighlighterSettingsUI()

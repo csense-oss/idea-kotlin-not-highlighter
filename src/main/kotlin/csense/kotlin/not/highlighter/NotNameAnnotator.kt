@@ -55,9 +55,9 @@ class NotNameAnnotator : Annotator {
     ) {
         val startOffsetOfText = element.textRange.startOffset
 
-        element.text.kebabCase.forEachKebabCase { string, stringStartIndex ->
+        element.text.camelCase.forEachCamelCaseWord { stringStartIndex, string ->
             if (!string.isNotText()) {
-                return@forEachKebabCase
+                return@forEachCamelCaseWord
             }
             val notTextRange = textRangeForNotText(startOffset = startOffsetOfText + stringStartIndex)
             highlightRange(

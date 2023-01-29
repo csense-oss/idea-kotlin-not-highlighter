@@ -1,11 +1,16 @@
+# 1.1.1
+
+- Should now respect camelCasing fully
+
 # 1.1.0
+
 - Improved settings page
 - added more settings
-- new highlighting of 
+- new highlighting of
     - !is
     - !=
     - multiple not's in the same function name etc
-- improved testing 
+- improved testing
 
 # 1.0.3
 
