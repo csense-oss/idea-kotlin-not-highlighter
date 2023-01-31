@@ -1,14 +1,19 @@
 package csense.kotlin.not.highlighter.settings
 
+import com.intellij.application.options.colors.*
 import com.intellij.codeInsight.daemon.*
 import com.intellij.openapi.options.*
 import com.intellij.openapi.project.*
+import com.intellij.ui.*
+import csense.idea.base.bll.*
+import csense.kotlin.not.highlighter.bll.*
 import csense.kotlin.not.highlighter.settings.form.*
+import java.awt.*
 import javax.swing.*
 
-class NotHighlighterSettingsConfigurable : Configurable {
+class NotHighlighterSettingsConfigurable : SearchableConfigurable {
 
-    var ui: NotHighlighterSettingsUI? = null
+    private var ui: NotHighlighterSettingsUI? = null
 
     override fun createComponent(): JComponent? {
         ui = ui ?: NotHighlighterSettingsUI()
@@ -23,20 +28,8 @@ class NotHighlighterSettingsConfigurable : Configurable {
     override fun apply() {
         val ui = ui ?: return
         val settings = NotHighlighterSettings.instance
-        settings.isEnabled = ui.isEnabled()
-
-        settings.foregroundColor = ui.foregroundColor()
-        settings.backgroundColor = ui.backgroundColor()
-
-        settings.highlightFunctionNames = ui.highlightFunctionNames()
-        settings.highlightVariableNames = ui.highlightVariableNames()
-
-        settings.italic = ui.italic()
-        settings.bold = ui.bold()
-
-        ProjectManager.getInstance().openProjects.forEach {
-            DaemonCodeAnalyzer.getInstance(it).restart()
-        }
+        ui.update(settings)
+        restartLineMarkersForAllProjects()
     }
 
     override fun reset() {
@@ -48,4 +41,9 @@ class NotHighlighterSettingsConfigurable : Configurable {
     }
 
     override fun getDisplayName() = "Csense Kotlin Not Highlighter"
+    override fun getId(): String {
+        return "csense.kotlin.not.highlighter.settings.NotHighlighterSettingsConfigurable"
+    }
 }
+
+

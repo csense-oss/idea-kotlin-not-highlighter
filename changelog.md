@@ -1,4 +1,19 @@
+# 1.1.1
+
+- Should now respect camelCasing fully
+
+# 1.1.0
+
+- Improved settings page
+- added more settings
+- new highlighting of
+    - !is
+    - !=
+    - multiple not's in the same function name etc
+- improved testing
+
 # 1.0.3
+
 - Fixed various bugs wrt settings
 - Built for newer IDEA version
 - Added more comprehensive tests
