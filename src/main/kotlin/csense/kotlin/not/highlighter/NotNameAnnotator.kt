@@ -3,6 +3,7 @@ package csense.kotlin.not.highlighter
 import com.intellij.lang.annotation.*
 import com.intellij.openapi.util.*
 import com.intellij.psi.*
+import csense.idea.base.bll.*
 import csense.idea.base.bll.kotlin.*
 import csense.idea.base.bll.string.*
 import csense.kotlin.not.highlighter.bll.*
@@ -11,7 +12,7 @@ import org.jetbrains.kotlin.psi.*
 
 class NotNameAnnotator : Annotator {
 
-    private val settings by lazy {
+    private val settings: NotHighlighterSettings by lazy {
         NotHighlighterSettings.instance
     }
 
@@ -53,13 +54,13 @@ class NotNameAnnotator : Annotator {
         element: PsiElement,
         holder: AnnotationHolder
     ) {
-        val startOffsetOfText = element.textRange.startOffset
+        val startOffsetOfText: Int = element.textRange.startOffset
 
-        element.text.camelCase.forEachCamelCaseWord { stringStartIndex, string ->
+        element.text.camelCase.forEachCamelCaseWord { stringStartIndex: Int, string: String ->
             if (!string.isNotText()) {
                 return@forEachCamelCaseWord
             }
-            val notTextRange = textRangeForNotText(startOffset = startOffsetOfText + stringStartIndex)
+            val notTextRange: TextRange = textRangeForNotText(startOffset = startOffsetOfText + stringStartIndex)
             highlightRange(
                 range = notTextRange,
                 holder = holder
@@ -71,19 +72,13 @@ class NotNameAnnotator : Annotator {
         return equals(notText, ignoreCase = true)
     }
 
-    private fun textRangeForNotText(startOffset: Int) = TextRange(
+    private fun textRangeForNotText(startOffset: Int): TextRange = TextRange(
         /* startOffset = */ startOffset,
         /* endOffset = */ startOffset + notText.length
     )
 
     private fun highlightRange(range: TextRange, holder: AnnotationHolder) {
-        holder
-            .newSilentAnnotation(
-                /* severity = */ HighlightSeverity.INFORMATION
-            )
-            .range(range)
-            .enforcedTextAttributes(settings.toTextAttributes())
-            .create()
+        holder.highlightTextRange(range = range, withStyle = settings.toTextAttributes())
     }
 
     companion object {

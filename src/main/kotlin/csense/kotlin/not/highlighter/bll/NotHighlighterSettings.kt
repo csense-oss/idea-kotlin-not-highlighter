@@ -10,7 +10,6 @@ import csense.kotlin.not.highlighter.settings.*
 import org.jetbrains.kotlin.lexer.*
 import org.jetbrains.kotlin.psi.*
 
-
 val NotHighlighterSettings.isNotEnabled: Boolean
     get() = !isEnabled
 
@@ -30,8 +29,8 @@ fun NotHighlighterSettings.mayHighlight(element: PsiElement): Boolean = when {
 }
 
 fun NotHighlighterSettings.mayHighlight(element: KtNameReferenceExpression): Boolean {
-    val isFunctionAndMayHighlight = element.isFunction() && highlightFunctionNames
-    val mayHighlightVariableNames = highlightVariableNames
+    val isFunctionAndMayHighlight: Boolean = element.isFunction() && highlightFunctionNames
+    val mayHighlightVariableNames: Boolean = highlightVariableNames
     return isFunctionAndMayHighlight || mayHighlightVariableNames
 }
 

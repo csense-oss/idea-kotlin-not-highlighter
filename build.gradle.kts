@@ -1,16 +1,16 @@
 plugins {
     //https://github.com/JetBrains/gradle-intellij-plugin
-    id("org.jetbrains.intellij") version "1.12.0"
+    id("org.jetbrains.intellij") version "1.13.0"
     //https://github.com/JetBrains/kotlin
-    kotlin("jvm") version "1.8.0"
+    kotlin("jvm") version "1.8.10"
     //https://github.com/Kotlin/kotlinx.serialization
-    kotlin("plugin.serialization") version "1.8.0"
+    kotlin("plugin.serialization") version "1.8.10"
     //https://jeremylong.github.io/DependencyCheck/
-    id("org.owasp.dependencycheck") version "8.0.2"
+    id("org.owasp.dependencycheck") version "8.1.0"
 }
 
 group = "csense-idea"
-version = "1.1.1"
+version = "1.1.2"
 
 intellij {
     updateSinceUntilBuild.set(false)
@@ -33,6 +33,7 @@ dependencies {
     implementation("csense.kotlin:csense-kotlin-datastructures-algorithms:0.0.41")
     implementation("csense.idea.base:csense-idea-base:0.1.60")
 
+    //https://github.com/Kotlin/kotlinx.serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0-RC")
 
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
@@ -45,7 +46,7 @@ tasks.getByName<org.jetbrains.intellij.tasks.PatchPluginXmlTask>("patchPluginXml
     changeNotes.set(
         """
         <ul>
-            <li>Should now respect camelCasing fully</li>
+            <li>Minor improvements</li>
         </ul>
       """
     )
