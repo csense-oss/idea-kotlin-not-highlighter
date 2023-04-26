@@ -2,6 +2,7 @@ package csense.kotlin.not.highlighter.bll
 
 import com.intellij.openapi.editor.markup.*
 import csense.idea.base.uicomponents.colorFont.*
+import csense.kotlin.not.highlighter.highligter.*
 import csense.kotlin.not.highlighter.settings.*
 
 val NotHighlighterSettings.isDisabled: Boolean
@@ -10,26 +11,16 @@ val NotHighlighterSettings.isDisabled: Boolean
 fun NotHighlighterSettings.toTextAttributes(): TextAttributes =
     colorFontPanelData.toTextAttributes()
 
-
-fun NotHighlighterSettings.textsToHiglight(): List<String> {
-    return listOf(notText) + disabledTextsOrEmpty()
-}
-
-//TODO clean this?
-private fun NotHighlighterSettings.disabledTextsOrEmpty(): List<String> {
-    if (!highlightDisabledText) {
-        return emptyList()
-    }
-    return listOf(
-        disableText,
-        disabledText
+fun NotHighlighterSettings.toHighlighterStrategy(): AnnotationHolderHighlighterStrategy {
+    return AnnotationHolderHighlighterStrategy(
+        textHighlightDecider = toTextHighlightDecider(),
+        textAttributes = toTextAttributes()
     )
 }
 
-private val NotHighlighterSettings.notText: String
-    get() = "not"
+fun NotHighlighterSettings.toTextHighlightDecider(): TextHighlightDecider {
+    val textsToHighlight: List<String> = listOf(TextHighlightDecider.notText) +
+            TextHighlightDecider.disabledTextsOrEmpty(fromSettings = this)
+    return TextHighlightDecider(namesToHighlight = textsToHighlight)
+}
 
-private val NotHighlighterSettings.disableText: String
-    get() = "disable"
-private val NotHighlighterSettings.disabledText: String
-    get() = "disabled"

@@ -22,10 +22,7 @@ class NotNameAnnotator : Annotator {
     }
 
     private fun getHighlighterFrom(element: PsiElement): ElementHighlighter {
-        val highlighterStrategy = AnnotationHolderHighlighterStrategy(
-            namesToHighlight = settings.textsToHiglight(),
-            settings.toTextAttributes()
-        )
+        val highlighterStrategy: AnnotationHolderHighlighterStrategy = settings.toHighlighterStrategy()
         return ElementHighlighter.from(
             element = element,
             settings = settings,
@@ -33,3 +30,4 @@ class NotNameAnnotator : Annotator {
         )
     }
 }
+

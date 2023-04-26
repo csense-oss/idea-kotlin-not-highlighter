@@ -10,7 +10,7 @@ import csense.kotlin.not.highlighter.bll.*
 import org.jetbrains.kotlin.psi.*
 
 class AnnotationHolderHighlighterStrategy(
-    private val namesToHighlight: List<String>,
+    private val textHighlightDecider: TextHighlightDecider,
     private val textAttributes: TextAttributes
 ) {
     fun highlightNameIdentifier(element: KtNamedDeclaration, holder: AnnotationHolder) {
@@ -23,7 +23,7 @@ class AnnotationHolderHighlighterStrategy(
         holder: AnnotationHolder
     ) {
         element.camelCase.forEachCamelCaseWordWithTextRange { range: TextRange, string: String ->
-            if (string.shouldNotHighlight()) {
+            if (textHighlightDecider.shouldNotHighlight(string)) {
                 return@forEachCamelCaseWordWithTextRange
             }
             highlightRange(
@@ -35,10 +35,5 @@ class AnnotationHolderHighlighterStrategy(
 
     fun highlightRange(range: TextRange, holder: AnnotationHolder) {
         holder.highlightTextRange(range = range, withStyle = textAttributes)
-    }
-
-
-    private fun String.shouldNotHighlight(): Boolean {
-        return namesToHighlight.doesNotContain(other = this, ignoreCase = true)
     }
 }
