@@ -23,3 +23,14 @@ fun Iterable<String>.doesNotContain(
     other = other,
     ignoreCase = ignoreCase
 )
+
+
+fun String.startsWithWhitespace(): Boolean {
+    val first: Char = firstOrNull() ?: return false
+    return first.isWhitespace()
+}
+
+fun String.endsWithWhitespace(): Boolean {
+    val last: Char = lastOrNull() ?: return false
+    return last.isWhitespace()
+}

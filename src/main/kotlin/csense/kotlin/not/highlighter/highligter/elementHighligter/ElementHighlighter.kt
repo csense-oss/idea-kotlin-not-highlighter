@@ -73,5 +73,11 @@ private fun ElementHighlighter.Companion.highlighterBy(
         highlighterStrategy = highlighterStrategy
     )
 
+    is PsiComment -> PsiCommentHighlighter(
+        element = element,
+        settings = settings,
+        highlighterStrategy = highlighterStrategy
+    )
+
     else -> DisabledHighlighter
 }

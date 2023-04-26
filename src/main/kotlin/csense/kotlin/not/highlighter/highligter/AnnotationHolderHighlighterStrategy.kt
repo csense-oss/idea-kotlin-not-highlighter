@@ -22,12 +22,18 @@ class AnnotationHolderHighlighterStrategy(
         element: PsiElement,
         holder: AnnotationHolder
     ) {
-        element.camelCase.forEachCamelCaseWordWithTextRange { range: TextRange, string: String ->
+        element.camelCase.forEachCamelCaseWordWithTextRange { originalRange: TextRange, string: String ->
             if (textHighlightDecider.shouldNotHighlight(string)) {
                 return@forEachCamelCaseWordWithTextRange
             }
+
+            val rangeToHighlight: TextRange = textHighlightDecider.getRangeToHighligt(
+                text = string,
+                originalTextRange = originalRange
+            )
+
             highlightRange(
-                range = range,
+                range = rangeToHighlight,
                 holder = holder
             )
         }
