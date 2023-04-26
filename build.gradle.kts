@@ -1,16 +1,18 @@
 plugins {
     //https://github.com/JetBrains/gradle-intellij-plugin
-    id("org.jetbrains.intellij") version "1.13.0"
+    id("org.jetbrains.intellij") version "1.13.3"
     //https://github.com/JetBrains/kotlin
-    kotlin("jvm") version "1.8.10"
+    kotlin("jvm") version "1.8.21"
     //https://github.com/Kotlin/kotlinx.serialization
-    kotlin("plugin.serialization") version "1.8.10"
+    kotlin("plugin.serialization") version "1.8.21"
     //https://jeremylong.github.io/DependencyCheck/
-    id("org.owasp.dependencycheck") version "8.1.0"
+    id("org.owasp.dependencycheck") version "8.2.1"
 }
 
+val javaVersion = "11"
+
 group = "csense-idea"
-version = "1.1.2"
+version = "2.0.0"
 
 intellij {
     updateSinceUntilBuild.set(false)
@@ -28,16 +30,21 @@ repositories {
 }
 
 dependencies {
-    implementation("csense.kotlin:csense-kotlin-jvm:0.0.59")
-    implementation("csense.kotlin:csense-kotlin-annotations-jvm:0.0.41")
+    //https://github.com/csense-oss/csense-kotlin
+    implementation("csense.kotlin:csense-kotlin-jvm:0.0.60")
+    //https://github.com/csense-oss/csense-kotlin-annotations
+    implementation("csense.kotlin:csense-kotlin-annotations-jvm:0.0.63")
+    //https://github.com/csense-oss/csense-kotlin-datastructures-algorithms
     implementation("csense.kotlin:csense-kotlin-datastructures-algorithms:0.0.41")
+    //https://github.com/csense-oss/idea-kotlin-shared-base
     implementation("csense.idea.base:csense-idea-base:0.1.60")
-
     //https://github.com/Kotlin/kotlinx.serialization
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0-RC")
-
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
+    //https://github.com/Kotlin/kotlinx.coroutines
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
-    testImplementation("csense.kotlin:csense-kotlin-tests:0.0.59")
+    //https://github.com/csense-oss/csense-kotlin-test
+    testImplementation("csense.kotlin:csense-kotlin-tests:0.0.60")
+    //https://github.com/csense-oss/csense-oss-idea-kotlin-shared-test
     testImplementation("csense.idea.test:csense-idea-test:0.3.0")
 }
 
@@ -45,9 +52,8 @@ dependencies {
 tasks.getByName<org.jetbrains.intellij.tasks.PatchPluginXmlTask>("patchPluginXml") {
     changeNotes.set(
         """
-        <ul>
-            <li>Minor improvements</li>
-        </ul>
+            Now supports 'not' & '!' highlighting in strings and comments. 
+            Also highlights "Disabled" by default (can be toggled off in settings page)
       """
     )
     sinceBuild.set("213")
@@ -58,15 +64,15 @@ tasks.getByName("check").dependsOn("dependencyCheckAnalyze")
 tasks {
 
     withType<JavaCompile> {
-        sourceCompatibility = "11"
-        targetCompatibility = "11"
+        sourceCompatibility = javaVersion
+        targetCompatibility = javaVersion
     }
 
     compileKotlin {
-        kotlinOptions.jvmTarget = "11"
+        kotlinOptions.jvmTarget = javaVersion
     }
     compileTestKotlin {
-        kotlinOptions.jvmTarget = "11"
+        kotlinOptions.jvmTarget = javaVersion
     }
 
     test {
