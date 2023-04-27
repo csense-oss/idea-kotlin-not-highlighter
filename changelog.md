@@ -1,3 +1,7 @@
+# 2.0.0
+- Now supports 'not' & '!' highlighting in strings and comments.
+- Also highlights "Disabled" by default (can be toggled off in settings page)
+
 # 1.1.1
 
 - Should now respect camelCasing fully

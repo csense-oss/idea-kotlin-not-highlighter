@@ -19,8 +19,10 @@ fun NotHighlighterSettings.toHighlighterStrategy(): AnnotationHolderHighlighterS
 }
 
 fun NotHighlighterSettings.toTextHighlightDecider(): TextHighlightDecider {
-    val textsToHighlight: List<String> = listOf(TextHighlightDecider.notText) +
-            TextHighlightDecider.disabledTextsOrEmpty(fromSettings = this)
+    val textsToHighlight: List<String> = listOf(
+        TextHighlightDecider.exclMarkText,
+        TextHighlightDecider.notText,
+    ) + TextHighlightDecider.disabledTextsOrEmpty(fromSettings = this)
     return TextHighlightDecider(namesToHighlight = textsToHighlight)
 }
 

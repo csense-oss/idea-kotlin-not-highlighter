@@ -33,6 +33,7 @@ class TextHighlightDecider(
     }
 
     companion object {
+        const val exclMarkText: String = "!"
         const val notText: String = "not"
         const val disableText: String = "disable"
         const val disabledText: String = "disabled"
