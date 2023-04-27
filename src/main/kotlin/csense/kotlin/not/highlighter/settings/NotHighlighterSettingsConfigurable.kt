@@ -6,6 +6,7 @@ import com.intellij.openapi.options.*
 import com.intellij.openapi.project.*
 import com.intellij.ui.*
 import csense.idea.base.bll.*
+import csense.idea.base.bll.linemarkers.*
 import csense.kotlin.not.highlighter.bll.*
 import csense.kotlin.not.highlighter.settings.form.*
 import java.awt.*
@@ -26,8 +27,8 @@ class NotHighlighterSettingsConfigurable : SearchableConfigurable {
 
     @Throws(ConfigurationException::class)
     override fun apply() {
-        val ui = ui ?: return
-        val settings = NotHighlighterSettings.instance
+        val ui: NotHighlighterSettingsUI = ui ?: return
+        val settings: NotHighlighterSettings = NotHighlighterSettings.instance
         ui.update(settings)
         restartLineMarkersForAllProjects()
     }
@@ -42,7 +43,7 @@ class NotHighlighterSettingsConfigurable : SearchableConfigurable {
 
     override fun getDisplayName() = "Csense Kotlin Not Highlighter"
     override fun getId(): String {
-        return "csense.kotlin.not.highlighter.settings.NotHighlighterSettingsConfigurable"
+        return NotHighlighterSettingsConfigurable::class.qualifiedName ?: ""
     }
 }
 

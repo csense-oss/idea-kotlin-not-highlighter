@@ -11,5 +11,3 @@ fun KtSimpleNameExpression.containsNotToken(): Boolean = getReferencedNameElemen
     KtTokens.EXCLEQ,
     KtTokens.EXCLEQEQEQ
 )
-
-
