@@ -79,5 +79,11 @@ private fun ElementHighlighter.Companion.highlighterBy(
         highlighterStrategy = highlighterStrategy
     )
 
+    is KtStringTemplateEntry -> KtStringTemplateEntryHighlighter(
+        element = element,
+        settings = settings,
+        highlighterStrategy = highlighterStrategy
+    )
+
     else -> DisabledHighlighter
 }
