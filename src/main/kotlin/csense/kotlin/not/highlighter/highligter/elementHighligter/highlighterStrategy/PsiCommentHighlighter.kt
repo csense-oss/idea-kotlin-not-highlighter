@@ -1,8 +1,10 @@
-package csense.kotlin.not.highlighter.highligter.elementHighligter
+package csense.kotlin.not.highlighter.highligter.elementHighligter.highlighterStrategy
 
 import com.intellij.lang.annotation.*
-import com.intellij.psi.PsiComment
+import com.intellij.psi.*
 import csense.kotlin.not.highlighter.highligter.*
+import csense.kotlin.not.highlighter.highligter.elementHighligter.*
+import csense.kotlin.not.highlighter.highligter.elementHighligter.settings.*
 import csense.kotlin.not.highlighter.settings.*
 
 class PsiCommentHighlighter(
@@ -15,6 +17,10 @@ class PsiCommentHighlighter(
     }
 
     override fun highlight(holder: AnnotationHolder) {
-        highlighterStrategy.highlightTextIn(element, holder)
+        highlighterStrategy.highlightTextIn(
+            element = element,
+            holder = holder,
+            setting = HighlighterSettings.CommentSettings
+        )
     }
 }

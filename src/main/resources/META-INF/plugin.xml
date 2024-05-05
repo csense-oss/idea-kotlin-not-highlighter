@@ -25,5 +25,10 @@
 
     <actions>
     </actions>
+    <projectListeners>
+        <listener
+                class="csense.kotlin.not.highlighter.file.FileContentListener"
+                topic="com.intellij.openapi.vfs.newvfs.BulkFileListener"/>
+    </projectListeners>
     <idea-version since-build="213"/>
 </idea-plugin>

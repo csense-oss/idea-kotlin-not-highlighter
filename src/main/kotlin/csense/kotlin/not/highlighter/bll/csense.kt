@@ -1,7 +1,6 @@
 package csense.kotlin.not.highlighter.bll
 
 import csense.kotlin.extensions.collections.typed.*
-import kotlin.collections.contains
 
 @Suppress("UNUSED_PARAMETER")
 fun noOp(explanation: String? = null) {
