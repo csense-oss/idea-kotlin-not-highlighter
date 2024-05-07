@@ -1,7 +1,7 @@
 # 2.1.0
 - can now set color independently for operators and function name(s) and comments
 - added ability to add custom names to highlight
-
+- Improved settings UI
 
 # 2.0.0
 - Now supports 'not' & '!' highlighting in strings and comments.

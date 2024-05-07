@@ -53,6 +53,7 @@ tasks.getByName<org.jetbrains.intellij.tasks.PatchPluginXmlTask>("patchPluginXml
     changeNotes.set(
         """
             Now able to change colors for either operators and functions
+            And have a custom list of words to highlight
       """
     )
     sinceBuild.set("213")
