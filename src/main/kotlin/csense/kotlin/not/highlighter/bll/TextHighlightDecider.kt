@@ -3,7 +3,6 @@ package csense.kotlin.not.highlighter.bll
 import com.intellij.openapi.util.*
 import csense.idea.base.bll.openApi.*
 import csense.kotlin.extensions.primitives.*
-import csense.kotlin.not.highlighter.settings.*
 
 class TextHighlightDecider(
     private val namesToHighlight: List<String>
