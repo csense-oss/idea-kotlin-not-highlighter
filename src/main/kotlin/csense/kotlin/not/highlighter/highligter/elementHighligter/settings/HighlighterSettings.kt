@@ -5,9 +5,9 @@ import csense.idea.base.uicomponents.colorFont.*
 import csense.kotlin.not.highlighter.settings.*
 
 object HighlighterSettings {
-    val NameSettings : HighlighterSetting = HighlighterSettingName()
-    val OperatorSettings : HighlighterSetting = HighlighterSettingOperators()
-    val CommentSettings : HighlighterSetting = HighlighterSettingComments()
+    val NameSettings: HighlighterSetting = HighlighterSettingName()
+    val OperatorSettings: HighlighterSetting = HighlighterSettingOperators()
+    val CommentSettings: HighlighterSetting = HighlighterSettingComments()
 }
 
 

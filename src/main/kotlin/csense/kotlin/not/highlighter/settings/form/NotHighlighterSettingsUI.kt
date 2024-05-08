@@ -91,11 +91,10 @@ class NotHighlighterSettingsUI {
     }
 
     private fun createCustomNamesFile() {
-        NamesHighlighterRepo.allOpened{ it: NamesHighlighterRepo ->
+        NamesHighlighterRepo.allOpened { it: NamesHighlighterRepo ->
             it.save()
         }
     }
-
 
 
 }
