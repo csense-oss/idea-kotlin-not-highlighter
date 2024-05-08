@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="csense.kotlin.not.highlighter.settings.form.NotHighlighterSettingsUI">
-  <grid id="27dc6" binding="root" layout-manager="GridLayoutManager" row-count="14" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="root" layout-manager="GridLayoutManager" row-count="15" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="688" height="765"/>
+      <xy x="20" y="20" width="814" height="785"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -130,14 +130,6 @@
           <text value="Is &quot;Not Highlighter&quot; enabled?"/>
         </properties>
       </component>
-      <component id="16ad6" class="javax.swing.JButton" binding="resetButton">
-        <constraints>
-          <grid row="13" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Reset to defaults"/>
-        </properties>
-      </component>
       <component id="6c313" class="javax.swing.JLabel">
         <constraints>
           <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -169,12 +161,33 @@
       </component>
       <component id="39fcc" class="javax.swing.JButton" binding="createCustomNamesButton">
         <constraints>
-          <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="12" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Create custom name(s) file"/>
         </properties>
       </component>
+      <component id="a1125" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="12" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Each line should contain one word of what to highlight"/>
+        </properties>
+      </component>
+      <component id="16ad6" class="javax.swing.JButton" binding="resetButton">
+        <constraints>
+          <grid row="14" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Reset all settings to defaults"/>
+        </properties>
+      </component>
+      <vspacer id="6da46">
+        <constraints>
+          <grid row="13" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </vspacer>
     </children>
   </grid>
 </form>
