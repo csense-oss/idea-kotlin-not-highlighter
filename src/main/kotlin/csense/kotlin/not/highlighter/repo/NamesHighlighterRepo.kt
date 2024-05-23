@@ -12,7 +12,7 @@ class NamesHighlighterRepo private constructor(
     private val storage: CachedFileInMemory<List<String>>?
 ) {
 
-    private val builtInNotTexts = listOf<String>(
+    private val builtInNotTexts: List<String> = listOf(
         "!",
         "not"
     )
@@ -83,6 +83,11 @@ private fun TextHighlightDecider.Companion.disabledTextsOrEmpty(fromSettings: No
     }
     return listOf(
         "disable",
-        "disabled"
+        "disabled",
+        "invalid",
+        "inactive",
+        "deactivate",
+        "disallow",
+        "cancel"
     )
 }
