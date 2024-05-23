@@ -88,6 +88,7 @@ private fun TextHighlightDecider.Companion.disabledTextsOrEmpty(fromSettings: No
         "inactive",
         "deactivate",
         "disallow",
-        "cancel"
+        "cancel",
+        "wrong"
     )
 }
