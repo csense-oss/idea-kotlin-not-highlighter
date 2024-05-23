@@ -4,6 +4,7 @@ import com.intellij.lang.annotation.*
 import com.intellij.psi.*
 import csense.kotlin.not.highlighter.bll.*
 import csense.kotlin.not.highlighter.highligter.*
+import csense.kotlin.not.highlighter.highligter.elementHighligter.highlighterStrategy.*
 import csense.kotlin.not.highlighter.settings.*
 import org.jetbrains.kotlin.psi.*
 

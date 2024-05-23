@@ -29,7 +29,7 @@ class NotHighlighterSettingsConfigurable : SearchableConfigurable {
     override fun apply() {
         val ui: NotHighlighterSettingsUI = ui ?: return
         val settings: NotHighlighterSettings = NotHighlighterSettings.instance
-        ui.update(settings)
+        ui.updateStoredSettings(settings)
         restartLineMarkersForAllProjects()
     }
 
@@ -46,5 +46,3 @@ class NotHighlighterSettingsConfigurable : SearchableConfigurable {
         return NotHighlighterSettingsConfigurable::class.qualifiedName ?: ""
     }
 }
-
-

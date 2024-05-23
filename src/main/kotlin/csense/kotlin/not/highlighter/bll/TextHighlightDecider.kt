@@ -1,9 +1,8 @@
 package csense.kotlin.not.highlighter.bll
 
-import com.intellij.openapi.util.TextRange
+import com.intellij.openapi.util.*
 import csense.idea.base.bll.openApi.*
 import csense.kotlin.extensions.primitives.*
-import csense.kotlin.not.highlighter.settings.*
 
 class TextHighlightDecider(
     private val namesToHighlight: List<String>
@@ -33,20 +32,6 @@ class TextHighlightDecider(
     }
 
     companion object {
-        const val exclMarkText: String = "!"
-        const val notText: String = "not"
-        const val disableText: String = "disable"
-        const val disabledText: String = "disabled"
+
     }
 }
-
-fun TextHighlightDecider.Companion.disabledTextsOrEmpty(fromSettings: NotHighlighterSettings): List<String> {
-    if (!fromSettings.highlightDisabledText) {
-        return emptyList()
-    }
-    return listOf(
-        disableText,
-        disabledText
-    )
-}
-

@@ -1,8 +1,10 @@
-package csense.kotlin.not.highlighter.highligter.elementHighligter
+package csense.kotlin.not.highlighter.highligter.elementHighligter.highlighterStrategy
 
 import com.intellij.lang.annotation.*
 import csense.idea.base.bll.kotlin.*
 import csense.kotlin.not.highlighter.highligter.*
+import csense.kotlin.not.highlighter.highligter.elementHighligter.*
+import csense.kotlin.not.highlighter.highligter.elementHighligter.settings.*
 import csense.kotlin.not.highlighter.settings.*
 import org.jetbrains.kotlin.psi.*
 
@@ -17,7 +19,11 @@ class KtIsExpressionHighligter(
     }
 
     override fun highlight(holder: AnnotationHolder) {
-        highlighterStrategy.highlightRange(range = element.textRangeOfOperator(), holder = holder)
+        highlighterStrategy.highlightRange(
+            range = element.textRangeOfOperator(),
+            holder = holder,
+            setting = HighlighterSettings.OperatorSettings
+        )
     }
 
 }
