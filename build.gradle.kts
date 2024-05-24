@@ -2,9 +2,9 @@ plugins {
     //https://github.com/JetBrains/gradle-intellij-plugin
     id("org.jetbrains.intellij") version "1.17.3"
     //https://github.com/JetBrains/kotlin
-    kotlin("jvm") version "1.9.23"
+    kotlin("jvm") version "2.0.0"
     //https://github.com/Kotlin/kotlinx.serialization
-    kotlin("plugin.serialization") version "1.9.23"
+    kotlin("plugin.serialization") version "2.0.0"
     //https://jeremylong.github.io/DependencyCheck/
     id("org.owasp.dependencycheck") version "9.1.0"
 }
