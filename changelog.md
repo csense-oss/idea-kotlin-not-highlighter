@@ -1,3 +1,6 @@
+# 2.2.0
+- more names (negations) added to highlight
+
 # 2.1.0
 - can now set color independently for operators and function name(s) and comments
 - added ability to add custom names to highlight

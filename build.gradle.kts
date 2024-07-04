@@ -1,18 +1,18 @@
 plugins {
     //https://github.com/JetBrains/gradle-intellij-plugin
-    id("org.jetbrains.intellij") version "1.17.3"
+    id("org.jetbrains.intellij") version "1.17.4"
     //https://github.com/JetBrains/kotlin
     kotlin("jvm") version "2.0.0"
     //https://github.com/Kotlin/kotlinx.serialization
     kotlin("plugin.serialization") version "2.0.0"
     //https://jeremylong.github.io/DependencyCheck/
-    id("org.owasp.dependencycheck") version "9.1.0"
+    id("org.owasp.dependencycheck") version "10.0.1"
 }
 
 val javaVersion = "11"
 
 group = "csense-idea"
-version = "2.1.0"
+version = "2.2.0"
 
 intellij {
     updateSinceUntilBuild.set(false)
@@ -52,8 +52,7 @@ dependencies {
 tasks.getByName<org.jetbrains.intellij.tasks.PatchPluginXmlTask>("patchPluginXml") {
     changeNotes.set(
         """
-            Now able to change colors for either operators and functions and comments
-            And a custom list of words to highlight 
+            added more names (negations) to highlight (builtin)
       """
     )
     sinceBuild.set("213")
