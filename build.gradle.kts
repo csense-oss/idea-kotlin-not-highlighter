@@ -41,9 +41,9 @@ dependencies {
     //https://github.com/csense-oss/idea-kotlin-shared-base
     implementation("csense.idea.base:csense-idea-base:0.1.70-Beta")
     //https://github.com/Kotlin/kotlinx.serialization
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.1")
     //https://github.com/Kotlin/kotlinx.coroutines
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.0")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.9.0-RC.2")
     //https://github.com/csense-oss/csense-kotlin-test
     testImplementation("csense.kotlin:csense-kotlin-tests:0.0.60")
     //https://github.com/csense-oss/csense-oss-idea-kotlin-shared-test
@@ -63,9 +63,12 @@ dependencies {
 }
 intellijPlatform {
     pluginConfiguration {
+        //language=html
         changeNotes = """
-            - k2 mode enabled
-            - bumped idea version requirements
+            <ul>
+               <li> k2 mode enabled </li>
+               <li> bumped idea version requirements </li>
+            </ul>
         """.trimIndent()
         ideaVersion {
             sinceBuild = "223"

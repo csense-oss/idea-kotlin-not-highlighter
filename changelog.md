@@ -1,3 +1,7 @@
+# 2.3.0
+- working in k2 mode
+- bump in deps & idea requirement
+
 # 2.2.0
 - more names (negations) added to highlight
 
