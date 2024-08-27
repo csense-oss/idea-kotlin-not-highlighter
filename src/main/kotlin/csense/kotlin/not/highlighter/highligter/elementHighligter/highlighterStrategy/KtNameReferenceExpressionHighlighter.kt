@@ -8,7 +8,7 @@ import csense.kotlin.not.highlighter.highligter.elementHighligter.settings.*
 import csense.kotlin.not.highlighter.settings.*
 import org.jetbrains.kotlin.psi.*
 
-class KtNameReferenceExpressionHighligter(
+class KtNameReferenceExpressionHighlighter(
     private val element: KtNameReferenceExpression,
     private val settings: NotHighlighterSettings,
     private val highlighterStrategy: AnnotationHolderHighlighterStrategy

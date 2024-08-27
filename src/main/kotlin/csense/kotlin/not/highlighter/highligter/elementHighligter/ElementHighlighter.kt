@@ -56,7 +56,7 @@ private fun ElementHighlighter.Companion.highlighterBy(
         highlighterStrategy = highlighterStrategy
     )
 
-    is KtNameReferenceExpression -> KtNameReferenceExpressionHighligter(
+    is KtNameReferenceExpression -> KtNameReferenceExpressionHighlighter(
         element = element,
         settings = settings,
         highlighterStrategy = highlighterStrategy

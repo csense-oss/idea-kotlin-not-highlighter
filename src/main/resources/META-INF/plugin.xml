@@ -22,6 +22,9 @@
                 instance="csense.kotlin.not.highlighter.settings.NotHighlighterSettingsConfigurable"/>
 
     </extensions>
+    <extensions defaultExtensionNs="org.jetbrains.kotlin">
+        <supportsKotlinPluginMode supportsK2="true" />
+    </extensions>
 
     <actions>
     </actions>
@@ -30,5 +33,4 @@
                 class="csense.kotlin.not.highlighter.file.FileContentListener"
                 topic="com.intellij.openapi.vfs.newvfs.BulkFileListener"/>
     </projectListeners>
-    <idea-version since-build="213"/>
 </idea-plugin>
