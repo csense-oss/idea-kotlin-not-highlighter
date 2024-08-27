@@ -86,13 +86,6 @@ tasks {
         targetCompatibility = javaVersion
     }
 
-    compileKotlin {
-        kotlinOptions.jvmTarget = javaVersion
-    }
-    compileTestKotlin {
-        kotlinOptions.jvmTarget = javaVersion
-    }
-
     test {
         testLogging {
             showExceptions = true
@@ -101,6 +94,13 @@ tasks {
         }
     }
 }
+
+kotlin {
+    jvmToolchain {
+        languageVersion.set(JavaLanguageVersion.of(javaVersion))
+    }
+}
+
 
 sourceSets {
     test {
