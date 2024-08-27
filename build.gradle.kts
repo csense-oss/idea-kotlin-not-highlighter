@@ -20,7 +20,7 @@ repositories {
 val javaVersion = "17"
 
 group = "csense-idea"
-version = "2.3.0"
+version = "2.4.0"
 
 repositories {
     mavenCentral()
@@ -66,8 +66,8 @@ intellijPlatform {
         //language=html
         changeNotes = """
             <ul>
-               <li> k2 mode enabled </li>
-               <li> bumped idea version requirements </li>
+               <li>  </li>
+               <li>  </li>
             </ul>
         """.trimIndent()
         ideaVersion {
