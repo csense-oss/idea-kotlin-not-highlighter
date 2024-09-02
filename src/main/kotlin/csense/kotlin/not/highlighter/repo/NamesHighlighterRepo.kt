@@ -32,9 +32,7 @@ class NamesHighlighterRepo private constructor(
     }
 
     fun getNames(settings: NotHighlighterSettings): List<String> {
-        return builtInNotTexts +
-                disabledBuiltInTextsOrEmpty(settings = settings) +
-                storage?.getCurrentValue().orEmpty()
+        return builtInNotTexts + disabledBuiltInTextsOrEmpty(settings = settings) + storage?.getCurrentValue().orEmpty()
     }
 
     private fun disabledBuiltInTextsOrEmpty(settings: NotHighlighterSettings): List<String> {
@@ -61,26 +59,21 @@ class NamesHighlighterRepo private constructor(
         private val cachedProjectToRepo: MutableMap<Project, NamesHighlighterRepo> = mutableMapOf()
 
         fun from(project: Project): NamesHighlighterRepo {
-            return cachedProjectToRepo.getOrPut(
-                key = project,
-                defaultValue = {
-                    NamesHighlighterRepo(fileCache(project))
-                }
-            )
+            return cachedProjectToRepo.getOrPut(key = project, defaultValue = {
+                NamesHighlighterRepo(fileCache(project))
+            })
         }
 
         private fun fileCache(
-            project: Project,
+            project: Project
         ): CachedFileInMemory<List<String>>? {
             val rootPath: String = project.basePath ?: return null
             val file: Path = Paths.get(rootPath, namesFileName)
 
-            return CachedFileInMemory(
-                initial = listOf(),
+            return CachedFileInMemory(initial = listOf(),
                 filePath = file,
                 serialization = { it.joinToStringNewLine() },
-                deserialization = { it.lines() }
-            )
+                deserialization = { it.lines() })
         }
 
         fun allOpened(action: (repo: NamesHighlighterRepo) -> Unit) {

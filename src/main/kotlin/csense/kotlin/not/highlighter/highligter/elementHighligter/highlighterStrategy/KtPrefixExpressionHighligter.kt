@@ -2,7 +2,6 @@ package csense.kotlin.not.highlighter.highligter.elementHighligter.highlighterSt
 
 import com.intellij.lang.annotation.*
 import csense.idea.base.bll.kotlin.*
-import csense.kotlin.not.highlighter.bll.*
 import csense.kotlin.not.highlighter.highligter.*
 import csense.kotlin.not.highlighter.highligter.elementHighligter.*
 import csense.kotlin.not.highlighter.highligter.elementHighligter.settings.*
