@@ -66,8 +66,9 @@ intellijPlatform {
         //language=html
         changeNotes = """
             <ul>
-               <li>  </li>
-               <li>  </li>
+               <li> i18n support (based on request)</li>
+               <li> improved settings UI a bit</li>
+               <li> added "dont" to built-in names to highlight</li>
             </ul>
         """.trimIndent()
         ideaVersion {
