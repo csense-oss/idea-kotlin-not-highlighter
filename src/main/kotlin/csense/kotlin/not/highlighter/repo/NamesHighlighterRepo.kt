@@ -42,12 +42,6 @@ class NamesHighlighterRepo private constructor(
         return builtInNegativeNames
     }
 
-    private fun Project.getFilenamePath(): Path? {
-        val rootPath: String = basePath ?: return null
-        val cachedFile: Path = Paths.get(rootPath, namesFileName)
-        return cachedFile
-    }
-
     fun save() {
         tryAndLog {
             storage?.save()
