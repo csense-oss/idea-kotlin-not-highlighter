@@ -8,7 +8,7 @@ plugins {
     //https://github.com/Kotlin/kotlinx.serialization
     kotlin("plugin.serialization") version "2.0.20"
     //https://jeremylong.github.io/DependencyCheck/
-    id("org.owasp.dependencycheck") version "10.0.3"
+    id("org.owasp.dependencycheck") version "10.0.4"
 }
 
 repositories {
@@ -20,7 +20,7 @@ repositories {
 val javaVersion = "17"
 
 group = "csense-idea"
-version = "2.3.0"
+version = "2.4.0"
 
 repositories {
     mavenCentral()
@@ -39,7 +39,7 @@ dependencies {
     //https://github.com/csense-oss/csense-kotlin-datastructures-algorithms
     implementation("csense.kotlin:csense-kotlin-datastructures-algorithms:0.0.41")
     //https://github.com/csense-oss/idea-kotlin-shared-base
-    implementation("csense.idea.base:csense-idea-base:0.1.70-Beta")
+    implementation("csense.idea.base:csense-idea-base:0.1.70")
     //https://github.com/Kotlin/kotlinx.serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.1")
     //https://github.com/Kotlin/kotlinx.coroutines
@@ -66,8 +66,9 @@ intellijPlatform {
         //language=html
         changeNotes = """
             <ul>
-               <li> k2 mode enabled </li>
-               <li> bumped idea version requirements </li>
+               <li> i18n support (based on request)</li>
+               <li> improved settings UI a bit</li>
+               <li> added "dont", "mismatch" to built-in names to highlight</li>
             </ul>
         """.trimIndent()
         ideaVersion {

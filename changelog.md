@@ -1,3 +1,8 @@
+# 2.4.0
+- i18n support (based on request)
+- improved settings UI a bit
+- added "dont", "mismatch" to built-in names to highlight
+
 # 2.3.0
 - working in k2 mode
 - bump in deps & idea requirement

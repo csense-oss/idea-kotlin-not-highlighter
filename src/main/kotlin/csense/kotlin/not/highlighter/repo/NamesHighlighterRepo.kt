@@ -4,18 +4,26 @@ import com.intellij.openapi.project.*
 import csense.idea.base.files.*
 import csense.kotlin.extensions.*
 import csense.kotlin.extensions.collections.*
-import csense.kotlin.not.highlighter.bll.*
 import csense.kotlin.not.highlighter.settings.*
 import java.nio.file.*
+import java.util.*
 
 class NamesHighlighterRepo private constructor(
-    private val storage: CachedFileInMemory<List<String>>?
+    private val storage: CachedFileInMemory<List<String>>?,
 ) {
 
-    private val builtInNotTexts: List<String> = listOf(
-        "!",
-        "not"
-    )
+    private val builtInNotTexts: List<String> by lazy {
+        val builtIn: List<String> = tryAndLog {
+            ResourceBundle.getBundle("texts.builtin-not-names").keys.toList()
+        } ?: emptyList()
+        return@lazy listOf("!") + builtIn
+    }
+
+    private val builtInNegativeNames: List<String> by lazy {
+        tryAndLog {
+            ResourceBundle.getBundle("texts.builtin-negative-names").keys.toList()
+        } ?: emptyList()
+    }
 
     fun reload() {
         tryAndLog {
@@ -24,15 +32,14 @@ class NamesHighlighterRepo private constructor(
     }
 
     fun getNames(settings: NotHighlighterSettings): List<String> {
-        return builtInNotTexts +
-                TextHighlightDecider.disabledTextsOrEmpty(fromSettings = settings) +
-                storage?.getCurrentValue().orEmpty()
+        return builtInNotTexts + disabledBuiltInTextsOrEmpty(settings = settings) + storage?.getCurrentValue().orEmpty()
     }
 
-    private fun Project.getFilenamePath(): Path? {
-        val rootPath: String = basePath ?: return null
-        val cachedFile: Path = Paths.get(rootPath, namesFileName)
-        return cachedFile
+    private fun disabledBuiltInTextsOrEmpty(settings: NotHighlighterSettings): List<String> {
+        if (!settings.highlightDisabledText) {
+            return emptyList()
+        }
+        return builtInNegativeNames
     }
 
     fun save() {
@@ -46,12 +53,9 @@ class NamesHighlighterRepo private constructor(
         private val cachedProjectToRepo: MutableMap<Project, NamesHighlighterRepo> = mutableMapOf()
 
         fun from(project: Project): NamesHighlighterRepo {
-            return cachedProjectToRepo.getOrPut(
-                key = project,
-                defaultValue = {
-                    NamesHighlighterRepo(fileCache(project))
-                }
-            )
+            return cachedProjectToRepo.getOrPut(key = project, defaultValue = {
+                NamesHighlighterRepo(fileCache(project))
+            })
         }
 
         private fun fileCache(
@@ -60,12 +64,10 @@ class NamesHighlighterRepo private constructor(
             val rootPath: String = project.basePath ?: return null
             val file: Path = Paths.get(rootPath, namesFileName)
 
-            return CachedFileInMemory(
-                initial = listOf(),
+            return CachedFileInMemory(initial = listOf(),
                 filePath = file,
                 serialization = { it.joinToStringNewLine() },
-                deserialization = { it.lines() }
-            )
+                deserialization = { it.lines() })
         }
 
         fun allOpened(action: (repo: NamesHighlighterRepo) -> Unit) {
@@ -75,21 +77,4 @@ class NamesHighlighterRepo private constructor(
         }
     }
 
-}
-
-private fun TextHighlightDecider.Companion.disabledTextsOrEmpty(fromSettings: NotHighlighterSettings): List<String> {
-    if (!fromSettings.highlightDisabledText) {
-        return emptyList()
-    }
-    return listOf(
-        "disable",
-        "disabled",
-        "invalid",
-        "inactive",
-        "deactivate",
-        "disallow",
-        "cancel",
-        "wrong",
-        "never"
-    )
 }
