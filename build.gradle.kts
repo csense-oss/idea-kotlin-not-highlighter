@@ -68,7 +68,7 @@ intellijPlatform {
             <ul>
                <li> i18n support (based on request)</li>
                <li> improved settings UI a bit</li>
-               <li> added "dont" to built-in names to highlight</li>
+               <li> added "dont", "mismatch" to built-in names to highlight</li>
             </ul>
         """.trimIndent()
         ideaVersion {
