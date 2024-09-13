@@ -1,3 +1,6 @@
+# 2.4.1
+- zh cn translations
+- 
 # 2.4.0
 - i18n support (based on request)
 - improved settings UI a bit

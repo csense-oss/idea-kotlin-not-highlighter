@@ -1,8 +1,11 @@
 package csense.kotlin.not.highlighter.settings.form
 
+import com.intellij.DynamicBundle
 import csense.idea.base.uicomponents.colorFont.*
 import csense.kotlin.not.highlighter.repo.*
 import csense.kotlin.not.highlighter.settings.*
+import org.jetbrains.kotlin.idea.gradleTooling.*
+import java.util.*
 import javax.swing.*
 
 
@@ -25,7 +28,14 @@ class NotHighlighterSettingsUI {
     private lateinit var createCustomNamesButton: JButton
     private lateinit var resetButton: JButton
 
+    private lateinit var forOperatorHighlightingLabel: JLabel
+    private lateinit var forNameHighlightingLabel: JLabel
+    private lateinit var forCommentHighlightLabel: JLabel
+    private lateinit var customNamesToHighlightLabel: JLabel
+    private lateinit var customNamesToHighlightDescriptionLabel: JLabel
+
     init {
+        loadStrings()
         loadSettings()
         resetButton.addActionListener {
             loadSettings(NotHighlighterSettings())
@@ -33,6 +43,24 @@ class NotHighlighterSettingsUI {
         createCustomNamesButton.addActionListener {
             createCustomNamesFile()
         }
+    }
+
+    fun loadStrings(){
+        val bundle: ResourceBundle =  DynamicBundle.getResourceBundle(NotHighlighterSettings::class.java.classLoader, "texts/Strings")
+        isEnabledBox.text = bundle.getString("settings.is.not.highlighter.enabled")
+        forOperatorHighlightingLabel.text = bundle.getString("settings.for.operator.highlighting")
+        highlightOperators.text = bundle.getString("settings.highlight.operators")
+        forNameHighlightingLabel.text = bundle.getString("settings.for.name.highlighting")
+        highlightVariableNames.text = bundle.getString("settings.highlight.variable.names")
+        highlightFunctionNames.text = bundle.getString("settings.highlight.function.names")
+        highlightStrings.text = bundle.getString("settings.highlight.strings")
+        highlightDisabledText.text = bundle.getString("settings.highlight.disable")
+        forCommentHighlightLabel.text = bundle.getString("settings.for.comment.highlighting")
+        highlightComments.text = bundle.getString("settings.highlight.comments")
+        customNamesToHighlightLabel.text = bundle.getString("settings.custom.names.to.highlight")
+        customNamesToHighlightDescriptionLabel.text = bundle.getString("settings.custom.names.to.highlight.notice")
+        createCustomNamesButton.text = bundle.getString("settings.custom.names.create.file")
+        resetButton.text = bundle.getString("settings.reset.button")
     }
 
 

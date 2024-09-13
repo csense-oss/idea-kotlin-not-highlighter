@@ -131,7 +131,7 @@
           <text resource-bundle="texts/Strings" key="settings.is.not.highlighter.enabled"/>
         </properties>
       </component>
-      <component id="6c313" class="javax.swing.JLabel">
+      <component id="6c313" class="javax.swing.JLabel" binding="forCommentHighlightLabel">
         <constraints>
           <grid row="12" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -139,7 +139,7 @@
           <text resource-bundle="texts/Strings" key="settings.for.comment.highlighting"/>
         </properties>
       </component>
-      <component id="e5950" class="javax.swing.JLabel">
+      <component id="e5950" class="javax.swing.JLabel" binding="forNameHighlightingLabel">
         <constraints>
           <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -152,7 +152,7 @@
           <grid row="3" column="1" row-span="2" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
         </constraints>
       </vspacer>
-      <component id="39346" class="javax.swing.JLabel">
+      <component id="39346" class="javax.swing.JLabel" binding="forOperatorHighlightingLabel">
         <constraints>
           <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -168,7 +168,7 @@
           <text resource-bundle="texts/Strings" key="settings.custom.names.create.file"/>
         </properties>
       </component>
-      <component id="a1125" class="javax.swing.JLabel">
+      <component id="a1125" class="javax.swing.JLabel" binding="customNamesToHighlightDescriptionLabel">
         <constraints>
           <grid row="17" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -189,7 +189,7 @@
           <grid row="18" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
         </constraints>
       </vspacer>
-      <component id="f6e15" class="javax.swing.JLabel">
+      <component id="f6e15" class="javax.swing.JLabel" binding="customNamesToHighlightLabel">
         <constraints>
           <grid row="16" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
