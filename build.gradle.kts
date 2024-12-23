@@ -2,13 +2,13 @@ import org.jetbrains.intellij.platform.gradle.*
 
 plugins {
     //https://github.com/JetBrains/gradle-intellij-plugin
-    id("org.jetbrains.intellij.platform") version "2.0.1"
+    id("org.jetbrains.intellij.platform") version "2.2.1"
     //https://github.com/JetBrains/kotlin
-    kotlin("jvm") version "2.0.20"
+    kotlin("jvm") version "2.1.0"
     //https://github.com/Kotlin/kotlinx.serialization
-    kotlin("plugin.serialization") version "2.0.20"
+    kotlin("plugin.serialization") version "2.1.0"
     //https://jeremylong.github.io/DependencyCheck/
-    id("org.owasp.dependencycheck") version "10.0.4"
+    id("org.owasp.dependencycheck") version "11.1.1"
 }
 
 repositories {
@@ -41,9 +41,9 @@ dependencies {
     //https://github.com/csense-oss/idea-kotlin-shared-base
     implementation("csense.idea.base:csense-idea-base:0.1.71")
     //https://github.com/Kotlin/kotlinx.serialization
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0-RC")
     //https://github.com/Kotlin/kotlinx.coroutines
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.9.0-RC.2")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.1")
     //https://github.com/csense-oss/csense-kotlin-test
     testImplementation("csense.kotlin:csense-kotlin-tests:0.0.60")
     //https://github.com/csense-oss/csense-oss-idea-kotlin-shared-test
@@ -66,9 +66,7 @@ intellijPlatform {
         //language=html
         changeNotes = """
             <ul>
-               <li> i18n support (based on request)</li>
-               <li> improved settings UI a bit</li>
-               <li> added "dont", "mismatch" to built-in names to highlight</li>
+               <li> added "none" to built-in names to highlight</li>
             </ul>
         """.trimIndent()
         ideaVersion {
