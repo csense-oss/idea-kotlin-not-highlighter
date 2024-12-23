@@ -52,13 +52,10 @@ dependencies {
 
     intellijPlatform {
         intellijIdeaCommunity("2022.3")
-
         bundledPlugin("org.jetbrains.kotlin")
         pluginVerifier()
         zipSigner()
-        instrumentationTools()
         testFramework(TestFrameworkType.Platform)
-
     }
 }
 intellijPlatform {
